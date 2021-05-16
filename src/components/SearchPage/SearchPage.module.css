@@ -1,0 +1,32 @@
+.header {
+    margin: auto;
+    padding: 2rem 2rem .5rem 2rem;
+    max-width: 1400px;
+}
+
+.header h1 {
+    display: block;
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: inherit;
+}
+
+.suggestion {
+    margin: auto;
+    max-width: 1850px;
+    padding: 1rem 2rem;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.suggestion::-webkit-scrollbar {
+    width: 0;
+}
+
+.suggestion .link {
+    background: black;
+}

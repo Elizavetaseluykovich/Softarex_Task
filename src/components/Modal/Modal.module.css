@@ -1,0 +1,358 @@
+.window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(12,15,19,.9);
+    z-index: 5;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 1.15rem;
+    margin-top: 2.3rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.author {
+    align-items: center;
+    justify-content: start;
+    flex-basis: auto;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+}
+
+.author a {
+    display: flex;
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+.btns {
+    align-items: center;
+    justify-content: end;
+    flex-basis: auto;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-left: .6rem;
+    position: relative;
+}
+
+.authorPic {
+    margin-right: 10px;
+    max-width: 52px;
+    max-height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+    border-radius: 50%;
+}
+
+.authorPic img {
+    width: 52px;
+    height: 52px;
+    object-fit: fill;
+    border-radius: 50%;
+}
+
+.text {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    line-height: 25px;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.header button:hover {
+    background: linear-gradient(rgba(255, 255, 255, 0.658), rgba(26, 26, 26, 0.062));
+}
+
+.header button, div.btnDownload {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 5%);
+    background: #fff;
+    color: #1a1a1a;
+    border-color: rgba(26,26,26,.15);
+}
+
+.btns button, div.btnDownload {
+    margin-right: .6rem;
+    font-weight: 300;
+    vertical-align: middle;
+    padding: .6rem 24px;
+    line-height: 1;
+}
+
+div.btnDownload {
+    padding: 0;
+    margin: 0;
+}
+
+.btnlike.btnlikeActive {
+    background: #ff2121;
+    color: #fff;
+} 
+.btnlike.btnlikeActive svg {
+    fill: #fff;
+}
+
+.btnlike.btnlikeActive:hover {
+    background: #ff2121;
+    color: #fff;
+} 
+.btnlike.btnlikeActive:hover svg {
+    fill: #fff;
+}
+
+.btnDownload span:first-child {
+    padding: 14px 24px;
+    border-right: 1px solid;
+    border-color: #04876d;
+}   
+
+.btns i {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+}
+
+.btnFollow {
+    margin-right: .6rem;
+    padding: 6px 13px;
+    min-height: 32px;
+    margin-left: 20px
+}
+
+div.btnDownload, .dropdown button {
+    background: #05a081;
+    color: #fff;
+    border-color: #05a081;
+}
+
+.btnDownload span:first-child:hover, .list:hover, .dropdown button:hover {
+    background: #08bd98;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+    margin: 35px 0;
+    object-fit: contain;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.imageContainer img {
+    max-height: 70vh;
+    min-height: 300px;
+    min-width: 240px;
+    max-width: 50vw;
+}
+
+
+.btnClose {
+    margin-top: 32px;
+    margin-left: 24px;
+    cursor: pointer;
+}
+
+.btnClose span {
+    display: inline-block;
+    width: 24px;
+    height: 2.5px;
+    background: rgb(171, 171, 171);
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.btnClose span::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 2.5px;
+    top: -16px;
+    left: 0;
+    background: rgb(171, 171, 171);
+    transform: rotate(90deg);
+}
+
+.btnClose span:hover, .btnClose span:hover::after {
+    background: rgb(255, 255, 255);
+}
+
+
+.modalBg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+img.zoomImg {
+    max-height: 75vh;
+    min-height: 300px;
+    transition: transform .1s ease;
+    transform-origin: center center;
+}
+
+.btnDownload a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown {
+    display: none;
+    width: 282px;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgb(0, 0, 0, 25%);
+    text-align: left;
+}
+
+.active {
+    display: block;
+}
+
+.list {
+    display: inline-block;
+    width: 37px;
+    font-size: inherit;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    position: relative;
+    text-align: center;
+}
+
+.dropdown:hover {
+    display: block;
+}
+
+.list::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    transform: rotate(45deg);
+}
+
+.list::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    transform: rotate(-45deg);
+}
+
+.dropdown ul {
+    list-style: none;
+    border-top: 1px solid rgba(26,26,26,.1);
+}
+
+.dropdown li {
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #5e5e5e;
+    padding: .6rem 1.15rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(26,26,26,.1);
+}
+
+.dropdown h3 {
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: normal;
+    color: #5e5e5e;
+    padding: .6rem 1.15rem;
+    position: relative;
+}
+
+.dropdownBtn {
+    display: inline-block;
+    padding: 12px 16px;
+}
+
+.dropdown button {
+    width: 250px;
+    margin: 0;
+}
+
+.dropdown label {
+    width: 100%;
+}
+
+.name {
+    color: #1a1a1a;
+    font-weight: 600;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.dropdown::before {
+    content: '';
+    position: absolute;
+    right: 11px;
+    top: -4.5px;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    box-shadow: -3px -3px 5px rgb(82, 95, 127, 4%);
+}
+
+.activeItem {
+    background: #f8f8f8;
+}
+
+.added svg {
+    fill: #818181;
+}

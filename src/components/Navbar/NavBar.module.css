@@ -1,0 +1,114 @@
+.nav {
+    position: fixed;
+    min-height: 66px;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 2;
+    background: transparent;
+}
+
+.nav form {
+    display: none;
+}
+
+.formContainer {
+    width: 750px;
+    /* width: 100%; */
+}
+
+.navLogo {
+    display: flex;
+    align-items: center;
+    width: 107px;
+    height: 40px;
+    text-decoration: none;
+    justify-content: space-between;
+    margin-right: 30px;
+}
+
+.navLogoImg {
+    height: 40px;
+    width: 40px;
+}
+
+.navLogoImg svg {
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+}
+
+.navLogoText {
+    font-size: 19px;
+    line-height: 1;
+    font-weight: 600;
+    color: #fff;
+    font-family: inherit;
+}
+
+.navLogoText:hover {
+    color: rgb(228, 228, 228);
+}
+
+.nav ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin-left: auto;
+}
+
+.nav ul i {
+    fill: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+
+.nav ul i:hover {
+    fill: rgb(228, 228, 228);
+}
+
+.btnJoin {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 1;
+    border-radius: 4px;
+    background-color: #05a081;
+    padding: 11.2px 28px;
+    font-family: inherit;
+    font-weight: 600;
+    margin-left: 25px;
+    transition: all .1s linear;
+}
+
+.btnJoin:hover {
+    opacity: .7;
+    transform: translateY(-2px);
+}
+
+.active {
+    background: #232a34;
+    margin-bottom: 66px;
+}
+
+.nav.active form {
+    display: flex;
+} 
+
+.padding {
+    position: relative;
+    height: 66px;
+    width: 100%;
+}
+
+
+
+
+

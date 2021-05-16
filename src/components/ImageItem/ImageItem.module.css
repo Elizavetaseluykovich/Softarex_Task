@@ -1,0 +1,160 @@
+.col {
+    padding-bottom: 15px;
+    padding-right: 15px;
+    transition: all .1s linear;
+}
+
+.col article {
+    position: relative;
+    height: auto;
+}
+
+.mainImg {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.authorPic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.imageBtns {
+    background: linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 100%);
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    opacity: 0;
+    transition: opacity .2s linear;
+    z-index: 1
+}
+
+.col:hover .imageBtns {
+   opacity: 1;
+}
+
+.imageBtns ul {
+    display: flex;
+    height: 100%;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.author {
+    text-decoration: none;
+    color: #e8e8e8;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all .1s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1.15rem; 
+    padding-left: 1.15rem 
+}
+
+.author span {
+    margin-left: 6px;
+}
+
+.imageBtns span:hover {
+    color: #fff;
+}
+
+.imageBtns li {
+    display: flex;
+    align-items: flex-end; 
+}
+
+.imageBtns i {
+    margin-right: 6px;
+    margin-left: 6px;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageBtns svg {
+    width: 100%;
+    height: 100%;
+    fill: #e8e8e8;
+}
+
+.imageBtns svg:hover {
+    fill: #fff;
+}
+
+.imageBtns button {
+    background: none;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+}
+
+.imageBtns li:last-child {
+    padding-bottom: 1.15rem;
+    padding-right: 1.15rem;
+}
+
+.container {
+    display: block;
+    position: absolute;    
+    top: 196px;
+    left: 68.5938px;
+    margin-top: .6rem;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgb(0, 0, 0, 25%);
+    text-align: left;
+    padding: 0;
+}
+
+.content {
+    padding: 1rem;
+}
+
+.imageBtns.active {
+    opacity: 1;
+}
+
+.imageBtns.active.like .author, .imageBtns.active.like .downloadIcon, .imageBtns.active.like .addToCollectionIcon {
+    opacity: 0;
+}
+
+.imageBtns.active.like .likeIcon svg {
+    fill: #ff2121;
+}
+
+.imageBtns.active.collection .author, .imageBtns.active.collection .likeIcon, .imageBtns.active.collection .downloadIcon {
+    opacity: 0;
+}
+
+.col:hover .imageBtns.active.like .author, .col:hover .imageBtns.active.like .downloadIcon, .col:hover .imageBtns.active.like .addToCollectionIcon {
+    opacity: 1;
+}
+
+.col:hover .imageBtns.active.collection .author, .col:hover .imageBtns.active.collection .downloadIcon, .col:hover .imageBtns.active.collection .likeIcon {
+    opacity: 1;
+}
+
+.imageBtns.active.all .addToCollectionIcon, .imageBtns.active.all .likeIcon {
+    opacity: 1;
+}
+
+
+.imageBtns.active.all .author, .imageBtns.active.all a.downloadIcon {
+    opacity: 0;
+}
+
+.col:hover .imageBtns.active.all .author, .col:hover .imageBtns.active.all .downloadIcon, .col:hover .imageBtns.active.all {
+    opacity: 1;
+}
+

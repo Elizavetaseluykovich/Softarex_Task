@@ -1,0 +1,10 @@
+.container {
+    margin: 0 auto;
+    margin-top: 24px;
+    max-width: 1850px;
+    min-height: 1500px;
+    padding: 0 13px 0 28px;
+    display: -webkit-box; 
+    display: -ms-flexbox;
+    display: flex;
+}

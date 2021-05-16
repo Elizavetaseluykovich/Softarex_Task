@@ -1,0 +1,46 @@
+@keyframes move {
+    0% {left: 0%}
+    100% {left: 100%}
+}
+
+.container {
+    width: 90vw;
+    margin: 0 auto;
+    position: relative;
+    height: 30px;
+}
+
+.item {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.item:nth-child(1) {
+    background-color: #192916;
+    animation: move 2s infinite ease-in-out;
+    -webkit-animation: move 2s infinite ease-in-out;
+    -moz-animation: move 2s infinite ease-in-out;
+
+}
+.item:nth-child(2) {
+    background-color: #163a1c;
+    animation: move 2s 150ms infinite ease-in-out;
+    -moz-animation: move 2s 150ms infinite ease-in-out;
+    -webkit-animation: move 2s 150ms infinite ease-in-out;
+}
+.item:nth-child(3) {
+    background-color: #2f5247;
+    animation: move 2s 300ms infinite ease-in-out;
+    -moz-animation: move 2s 300ms infinite ease-in-out;
+    -webkit-animation: move 2s 300ms infinite ease-in-out;
+}
+.item:nth-child(4) {
+    background-color: #5f8285;
+    animation: move 2s 450ms infinite ease-in-out;
+    -moz-animation: move 2s 450ms infinite ease-in-out;
+    -webkit-animation: move 2s 450ms infinite ease-in-out;
+}
+
