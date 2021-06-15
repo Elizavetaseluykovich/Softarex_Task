@@ -1,23 +1,25 @@
 import PhotosContainer from '../PhotosContainer/PhotosContainer';
 import styles from './PhotoPage.module.css';
 import {useLocation} from "react-router-dom";
+import { useSelector } from 'react-redux';
+import {translate} from '../../i18n/index';
 
-
-const SearchPage = () => {
+const PhotoPage = () => {
     const location = useLocation();
-    const {props, name} = location.state;
+    const {collection} = useSelector(state => state.photos);
+    const {language} = useSelector(state => state.language);
 
     return (
-        props.length === 0 ? <h2 className={styles.error}>Oh, sorry :(  It's empty. </h2> :
+        collection.length === 0 ? <h2 className={styles.error}>{translate('empty', language)}</h2> :
         <>
             <section className={styles.header}>
-                <h1>{name}</h1>
+                <h1>{translate("collection", language)} </h1> 
             </section>
             <section className={styles.content}>
-                <PhotosContainer photos={props} location={location}/>
+                <PhotosContainer photos={collection} location={location}/>
             </section>
         </>
     )
 }
 
-export default SearchPage;
+export default PhotoPage;

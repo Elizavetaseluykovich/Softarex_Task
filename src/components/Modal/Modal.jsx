@@ -3,6 +3,7 @@ import styles from './Modal.module.css';
 import {downloadPhoto, setLikePhoto, PhotoCollection} from '../../store/actions/PhotosActions';
 import {useHistory, useLocation} from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux';
+import {translate} from '../../i18n/index';
 
 const Modal = () => {
     let history = useHistory();
@@ -10,10 +11,11 @@ const Modal = () => {
     const [zoom, setZoom] = useState(false);
     const [transform, setTransform] = useState('');
     const {likes, collection} = useSelector((state) => state.photos);
+    const {language} = useSelector(state => state.language);
     const [list, setList] = useState(false);
     const [activeItem, setActiveItem] = useState({active: true, id: 1});
     const location = useLocation();
-    const {src, photographer_url, photographer, width, height, id, url} = location.state;
+    const {src, photographer_url, photographer, width, height, id, url, avg_color} = location.state;
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';
@@ -76,9 +78,7 @@ const Modal = () => {
                 <section className={styles.header}>
                     <section className={styles.author}>
                         <a href={photographer_url} target='_blank' rel="noreferrer">
-                            <span className={styles.authorPic}>
-                                <img src={src.original} alt={photographer}/>
-                            </span>
+                            <span className={styles.authorPic} style={{background: `${avg_color}`}}></span>
                             <span className={styles.text}>
                                 <p>{photographer}</p>
                             </span>
@@ -88,7 +88,7 @@ const Modal = () => {
                         <button className={find(likes, id) ? `${styles.btnlike} ${styles.btnlikeActive}` : styles.btnlike} onClick={e => {e.preventDefault(); dispatch(setLikePhoto(id))}}>
                             <i><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path></svg>
                             </i>
-                            <span>Like</span>
+                            <span>{translate("like", language)}</span>
                         </button>
                         <button className={styles.btnAdd} onClick={e => {e.preventDefault(); dispatch(PhotoCollection(id))}}>
                             {find(collection, id) ? 
@@ -99,47 +99,47 @@ const Modal = () => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg>
                                 </i> 
                             }
-                            <span>Collect</span>
+                            <span>{translate("collect", language)}</span>
                         </button>
                         <div className={styles.btnDownload}>
-                            <span onClick={() => downloadPhoto(src.original, photographer)}>Free download</span>
+                            <span onClick={() => downloadPhoto(src.original, photographer)}>{translate("download", language)}</span>
                             <span className={styles.list} onClick={() => setList(!list)}></span>
                         </div>
                         <div className={list ? `${styles.dropdown} ${styles.active}` : styles.dropdown}>
                             <div className={styles.dropdownContainer} >
                                 <form >
-                                    <h3>Choose a size:</h3>
+                                    <h3>{translate("choose", language)}:</h3>
                                     <ul>
                                         <li onClick={e => {setActiveLi(e, height, width)}} id='1' className={activeItem.active & activeItem.id === '1' ? styles.activeItem : ''}>
                                             <label>  
                                                 <input type="radio" name="size" id="first" checked={activeItem.active & activeItem.id === '1' ? true : false}/>
-                                                <span className={styles.name}>Original</span>
+                                                <span className={styles.name}>{translate("original", language)}</span>
                                                 <span> {width} x {height}</span>
                                             </label>
                                         </li>
                                         <li onClick={e => {setActiveLi(e, Math.floor((height/width)*1920), 1920)}} id='2' className={activeItem.active & activeItem.id === '2' ? styles.activeItem : ''}>
                                             <label>  
                                                 <input type="radio" name="size" id="second" checked={activeItem.active & activeItem.id === '2' ? true : false}/>
-                                                <span className={styles.name}>Large</span>
+                                                <span className={styles.name}>{translate("large", language)}</span>
                                                 <span> {1920} x {Math.floor((height/width)*1920)}</span>
                                             </label>
                                         </li>
                                         <li onClick={e => {setActiveLi(e, Math.floor((height/width)*1280), 1280)}} id='3' className={activeItem.active & activeItem.id === '3' ? styles.activeItem : ''}>
                                             <label>
                                                 <input type="radio" name="size" id="third" checked={activeItem.active & activeItem.id === '3' ? true : false}/>
-                                                <span className={styles.name}>Medium</span> 
+                                                <span className={styles.name}>{translate("medium", language)}</span> 
                                                 <span> {1280} x {Math.floor((height/width)*1280)} </span>
                                             </label>
                                         </li>
                                         <li onClick={e => {setActiveLi(e, Math.floor((height/width)*640), 640)}} id='4' className={activeItem.active & activeItem.id === '4' ? styles.activeItem : ''}>
                                             <label>
                                                 <input type="radio" name="size" id="fourth" checked={activeItem.active & activeItem.id === '4' ? true : false}/>
-                                                <span className={styles.name}>small</span>
+                                                <span className={styles.name}>{translate("small", language)}</span>
                                                 <span> {640} x {Math.floor((height/width)*640)}</span>
                                             </label>
                                         </li>
                                     </ul>
-                                    <span className={styles.dropdownBtn} ><button  onClick={(e) => {e.preventDefault(); downloadPhoto(src.original, photographer, activeItem.width, activeItem.height)} }>Free download</button></span>
+                                    <span className={styles.dropdownBtn} ><button  onClick={(e) => {e.preventDefault(); downloadPhoto(src.original, photographer, activeItem.width, activeItem.height)}}>{translate("download", language)}</button></span>
                                 </form>
                             </div>
                         </div>
@@ -147,7 +147,7 @@ const Modal = () => {
                 </section>
                 <section className={styles.image} onClick={() => setZoom(!zoom)} style={zoom ? {cursor: 'zoom-out'} : {cursor: 'zoom-in'}}>
                     <div className={styles.imageContainer}>
-                        <img style={transform ? {transform : transform} : {}} className={zoom ? `${styles.zoomImg} ${styles.mainImg}` : styles.mainImg}  src={src.original} alt={url.substring(29, url.lastIndexOf('-'))}/>
+                        <img style={transform ? {transform : transform} : {}} className={zoom ? `${styles.zoomImg} ${styles.mainImg}` : styles.mainImg} src={src.original} alt={url.substring(29, url.lastIndexOf('-'))}/>
                     </div>
                 </section>
             </div>

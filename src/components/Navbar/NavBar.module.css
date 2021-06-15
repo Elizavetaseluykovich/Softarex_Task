@@ -17,7 +17,6 @@
 
 .formContainer {
     width: 750px;
-    /* width: 100%; */
 }
 
 .navLogo {
@@ -50,10 +49,10 @@
 }
 
 .navLogoText:hover {
-    color: rgb(228, 228, 228);
+    color: rgb(237, 237, 237);
 }
 
-.nav ul {
+.btns {
     height: 100%;
     display: flex;
     align-items: center;
@@ -61,36 +60,23 @@
     margin-left: auto;
 }
 
-.nav ul i {
-    fill: #fff;
+.btns li a, .btns li{
+    color: #fff;
+    font-size: 19px;
+    padding-left: 24px;
+    text-decoration: none;
     cursor: pointer;
     display: flex;
     align-items: center;
 }
 
-
-.nav ul i:hover {
-    fill: rgb(228, 228, 228);
+.btns li a:hover, .btns li:hover {
+    color: rgb(237, 237, 237);
 }
 
-.btnJoin {
-    text-decoration: none;
-    color: #fff;
-    display: inline-block;
-    font-size: 17px;
-    line-height: 1;
-    border-radius: 4px;
-    background-color: #05a081;
-    padding: 11.2px 28px;
-    font-family: inherit;
-    font-weight: 600;
-    margin-left: 25px;
-    transition: all .1s linear;
-}
-
-.btnJoin:hover {
-    opacity: .7;
-    transform: translateY(-2px);
+li a.activeCollection {
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .active {

@@ -51,18 +51,12 @@
 }
 
 .authorPic {
+    display: inline-block;
     margin-right: 10px;
     max-width: 52px;
     max-height: 52px;
     min-width: 52px;
     min-height: 52px;
-    border-radius: 50%;
-}
-
-.authorPic img {
-    width: 52px;
-    height: 52px;
-    object-fit: fill;
     border-radius: 50%;
 }
 

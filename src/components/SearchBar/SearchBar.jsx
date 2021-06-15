@@ -3,8 +3,9 @@ import { useDispatch} from 'react-redux';
 import styles from './SearchBar.module.css';
 import SuggestionContainer from '../SuggestionContainer/SuggestionContainer';
 import {useHistory} from "react-router-dom";
+import {translate} from '../../i18n/index';
 
-const SearchBar = ({top, check}) => {
+const SearchBar = ({top, check, language}) => {
 
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
@@ -32,17 +33,14 @@ const SearchBar = ({top, check}) => {
 
     function closeDropDown() {
         window.addEventListener('click', e => checkFocus(e));
-        // setFocus(true);
         window.removeEventListener('click', e => checkFocus(e));
     }
 
-
     return (
         <div className={styles.searchContainer} onClick={closeDropDown}> 
-            {/* <div className={styles.bg}></div> */}
             <form className={styles.form} onSubmit={(e) => submit(e)}>
                 <div className={focus && check ? `${styles.formContainer} ${styles.focus}` : `${styles.formContainer}`}>
-                    <input type="text" placeholder='Search for free photos' onChange={(e)=>setSearch(e.target.value)} className={styles.input} value={search} required/>
+                    <input type="text" placeholder={`${translate('search', language)}`} onChange={(e)=>setSearch(e.target.value)} className={styles.input} value={search} required/>
                     <button className={styles.btn}>
                         <i className={styles.icon}>
                             <svg className={styles.svgIcon} xmlns="http://www.w3.org/2000/svg">
@@ -51,8 +49,7 @@ const SearchBar = ({top, check}) => {
                         </i>
                     </button>
                 </div>
-                {focus && check ? <SuggestionContainer arr={top} addfocus={() => setFocus(true)}/> : null }
-                {/* <SuggestionContainer arr={arr} focus={() => setFocus(true)}/> */}
+                {focus && check ? <SuggestionContainer arr={top} addfocus={() => setFocus(true)} language={language}/> : null }
             </form>
         </div>
     )

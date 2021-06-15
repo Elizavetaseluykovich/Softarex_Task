@@ -6,15 +6,18 @@ import {getPhotos} from '../../store/actions/PhotosActions';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from '../Loader/Loader';
 import { useLocation } from 'react-router-dom';
+import {translate} from '../../i18n/index';
 
 const SearchPage = () => {
 
     const dispatch = useDispatch();
     const location = useLocation();
-    const {history, photos, error} = useSelector((state) => state.photos);
+    const {photos, error} = useSelector((state) => state.photos);
+    const {language} = useSelector(state => state.language);
     const [page, setPage] = useState(1);
     const [isFetching, setIsFetching] = useState(false);
-    let search = history[history.length-1];
+    let search = location.pathname.slice(8);
+    let header = search[0].toUpperCase() + search.slice(1);
 
     const photosCount = Math.round(window.innerHeight * (window.innerWidth - 100) / (((window.innerWidth - 100) / 4) * 590));
 
@@ -32,17 +35,23 @@ const SearchPage = () => {
         error ? <p>{error}</p> :
         <>
             <section className={styles.header}>
-                <h1>{search} photos</h1>
+                {language === 'RU' ? 
+                    <h1>{translate("photos", language)} "{header}"</h1>
+                    :<h1>{header} {translate("photos", language)} </h1>
+                }
             </section>
             <section className={styles.content}>
-                <InfiniteScroll
-                    dataLength={photos ? photos.length : null}
-                    next={() => searchPhotosHandler(false)}
-                    hasMore={isFetching}
-                    loader={<Loader/>}>
-                    <PhotosContainer photos={photos} location={location}/>
-                    {/* {isFetching ? <Loader/> : ''}  */}
-                </InfiniteScroll>
+               {photos.length > 0 ?
+                 <InfiniteScroll
+                 dataLength={photos ? photos.length : null}
+                 next={() => searchPhotosHandler(false)}
+                 hasMore={isFetching}
+                 loader={<Loader/>}>
+                 <PhotosContainer photos={photos} location={location}/>
+                 {isFetching ? <Loader/> : ''} 
+             </InfiniteScroll> :
+                <p className={styles.notFound}>{translate('notFound', language)} "{header}"</p>
+             }
             </section>
         </>
     )

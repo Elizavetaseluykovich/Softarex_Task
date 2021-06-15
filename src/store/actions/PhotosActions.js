@@ -5,7 +5,14 @@ import axios from 'axios';
 export const getPhotos = (page, per_page, query) => {
     return async (dispatch) => {
         try {
-            const photos = await client.photos.search({ page, per_page, query});
+            const photos = await client.photos.search({ page, per_page, query}, {
+                mode: 'no-cors',
+                method: 'post',
+                headers: {
+                    'Authorization': '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf',
+                    "Access-Control-Allow-Origin": "*",
+                },
+            });
 
             if("error" in photos) {
                 throw new Error(photos.error);
@@ -21,7 +28,14 @@ export const getPhotos = (page, per_page, query) => {
 export const getCuratedPhotos = (page, per_page) => {
     return async (dispatch) => {
         try {
-            const photos = await client.photos.curated({ page, per_page });
+            const photos = await client.photos.curated({ page, per_page }, {
+                mode: 'no-cors',
+                method: 'post',
+                headers: {
+                    'Authorization': '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf',
+                    "Access-Control-Allow-Origin": "*"
+                },
+            });
             if("error" in photos) {
                 throw new Error(photos.error);
             } else {

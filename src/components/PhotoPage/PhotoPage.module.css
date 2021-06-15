@@ -32,8 +32,9 @@
 }
 
 h2.error {
-    display: inline-block;
+    display: block;
     margin: 160px;
+    text-align: center;
     font-family: inherit;
     font-size: 32px;
     color: #1e1e1e;

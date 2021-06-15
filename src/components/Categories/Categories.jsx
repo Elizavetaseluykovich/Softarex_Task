@@ -1,27 +1,27 @@
-import React from 'react';
-import MenuList from '../MenuList/MenuList';
 import styles from './Categories.module.css';
 import {content} from '../../store/arrays';
-import { useDispatch } from 'react-redux';
-import {Link, useLocation} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
+import {translate} from '../../i18n/index';
 
 const Categories = () => {
     const dispatch = useDispatch();
+    const {language} = useSelector(state => state.language);
+
     return (
         <>
-            <MenuList/>
             <section className={styles.container}>
                 <div className={styles.title}>
-                    <h1>Popular Searches</h1>
-                    <p>The most popular search terms on Pexels.</p>
+                    <h1>{translate("popular", language)}</h1>
+                    <p>{translate("popularText", language)}</p>
                 </div>
                 <div className={styles.content}>
                     {content.map(item => {
                         const link = item.title.replace(' ', '%20');
                         return (
-                        <div className={styles.item} onClick={()=> dispatch({type: 'SET_HISTORY', payload: item.title})}>
+                        <div key={item.id} className={styles.item} onClick={()=> dispatch({type: 'SET_HISTORY', payload: item.title})}>
                             <Link to={`/search/${link}`}>
-                                <h4>{item.title}</h4>
+                                <h4>{translate(`${item.title}`, language)}</h4>
                                 <img src={item.img} alt={item.title}/>
                                 <span>→</span>
                             </Link>

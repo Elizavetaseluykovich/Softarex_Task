@@ -9,6 +9,19 @@
     height: auto;
 }
 
+.placeholder {
+    position: absolute;
+    /* top: 0;
+    bottom: 0; */
+    left: 0;
+    right: 0;
+}
+
+.link {
+   display: inline-block;
+   width: 100%;
+}
+
 .mainImg {
     display: block;
     width: 100%;
@@ -157,4 +170,5 @@
 .col:hover .imageBtns.active.all .author, .col:hover .imageBtns.active.all .downloadIcon, .col:hover .imageBtns.active.all {
     opacity: 1;
 }
+
 

@@ -79,7 +79,7 @@ const photoReducer = (state=initialState, action) => {
             else if (!checking) {
                 state.photos.forEach((item) => {
                     if (item.id === action.payload) {
-                        newcollection.push({...item});
+                        newcollection.unshift({...item});
                     }
                 })
             }

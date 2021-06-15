@@ -3,13 +3,20 @@ import ImageItem from '../ImageItem/ImageItem';
 import Masonry from 'react-masonry-css'
 import Loader from '../Loader/Loader';
 
-const PhotosContainer= ({photos, location}) => {
+const PhotosContainer= ({photos, location}) => { 
     return (
         <Masonry 
             breakpointCols={4}
             className={styles.container}>
-            {photos ? photos.map((photo) =>
-                <ImageItem {...photo} location={location}/>) : <><p>Sorry. Error </p> <Loader/></>} 
+            {
+                photos ? 
+                photos.map((photo) =>
+                    <>
+                        <ImageItem key={photo.id} {...photo} location={location}  />
+                    </>
+                    )
+                : <><p>Sorry. Error </p> <Loader/></>
+            } 
         </Masonry>
     )
 }

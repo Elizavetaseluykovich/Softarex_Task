@@ -1,11 +1,16 @@
 import { useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import styles from './NavBar.module.css';
+import { useSelector, useDispatch} from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
+import {setLanguage} from '../../store/actions/LangActions';
+import {translate} from '../../i18n/index';
 
 
 const NavBar = ({active}) => {
     const [navbar, setNavbar] = useState(active);
+    const {language} = useSelector(state => state.language)
+    const dispatch = useDispatch();
     
     function setBgNavBar() {
         if(window.scrollY >= 90) {
@@ -20,7 +25,7 @@ const NavBar = ({active}) => {
     return (
        <>
             <nav className={navbar || active ? `${styles.nav} ${styles.active}` : `${styles.nav}`}>
-                <Link exact to="/" className={styles.navLogo}>
+                <Link to="/" className={styles.navLogo}>
                     <div className={styles.navLogoImg}>
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32">
                             <path d="M2 0h28a2 2 0 0 1 2 2v28a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" fill="#05A081"></path>
@@ -31,9 +36,20 @@ const NavBar = ({active}) => {
                 </Link>
                 <div className="form">
                     <div className={styles.formContainer}>
-                        <SearchBar check={false}/>
+                        <SearchBar check={false} language={language}/>
                     </div>
                 </div>
+                <ul className={styles.btns}>
+                    <li>
+                        <NavLink to="/collection" activeClassName={`${styles.activeCollection}`}>{translate("collection", language)}</NavLink>
+                    </li>
+                    <li onClick={() => dispatch(setLanguage('RU'))}>
+                        RU
+                    </li>
+                    <li onClick={() => dispatch(setLanguage('EN'))}>
+                        EN
+                    </li>
+                </ul>
             </nav>
             <div className={styles.padding}></div>
         </>
