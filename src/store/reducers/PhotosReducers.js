@@ -1,21 +1,38 @@
-import { GET_PHOTOS, SET_ERROR, SET_HISTORY, DELETE_HISTORY, LIKE_PHOTO, COLLECTION} from '../types';
+import { SET_ERROR, SET_HISTORY, DELETE_HISTORY, LIKE_PHOTO, COLLECTION, SET_CURATED_PHOTOS, SET_PHOTOS, SET_IS_FETCHING} from '../types';
 
 const initialState= {
     photos: [],
+    curatedPhotos: [],
     total_results: 0,
     page: 1, 
+    pageP: 1, 
     history: JSON.parse(localStorage.getItem('history')) || [],
     likes: JSON.parse(localStorage.getItem('likes')) || [],
     collection: JSON.parse(localStorage.getItem('collection')) || [],
+    isFetching: true,
     error: ''
 }
 
 const photoReducer = (state=initialState, action) => {
     switch(action.type) {
-        case GET_PHOTOS:
-            const { photos, page, total_results} = action.payload;
-            let photosArr = [];
+        case SET_CURATED_PHOTOS:
+            const { curatedPhotos, page } = action.payload;
+            let curatedPhotosArr = [];
             if (page > 1) {
+                curatedPhotosArr = [...state.curatedPhotos, ...curatedPhotos];
+            } else {
+                curatedPhotosArr = curatedPhotos;
+            }
+            return {
+                ...state,
+                curatedPhotos: curatedPhotosArr,
+                photos: [],
+                page: page
+            }
+        case SET_PHOTOS:
+            const { photos, pageP } = action.payload;
+            let photosArr = [];
+            if (pageP > 1) {
                 photosArr = [...state.photos, ...photos];
             } else {
                 photosArr = photos;
@@ -23,8 +40,8 @@ const photoReducer = (state=initialState, action) => {
             return {
                 ...state,
                 photos: photosArr,
-                total_results,
-                page: page
+                isFetching: false,
+                pageP
             }
         case SET_HISTORY:
             const history = action.payload.replace('%20', ' ');
@@ -55,11 +72,19 @@ const photoReducer = (state=initialState, action) => {
             })
             if (check) newLikes.splice(indexFind, 1);
             else if (!check) {
-                state.photos.forEach((item) => {
-                    if (item.id === action.payload) {
-                        newLikes.push({...item});
-                    }
-                })
+                if (state.photos.length === 0) {
+                    state.curatedPhotos.forEach((item) => {
+                        if (item.id === action.payload) {
+                            newLikes.push({...item});
+                        }
+                    })
+                } else {
+                    state.photos.forEach((item) => {
+                        if (item.id === action.payload) {
+                            newLikes.push({...item});
+                        }
+                    })
+                }
             }
             localStorage.setItem('likes', JSON.stringify(newLikes));
             return {
@@ -77,11 +102,19 @@ const photoReducer = (state=initialState, action) => {
             })
             if (checking) newcollection.splice(imageIndex, 1);
             else if (!checking) {
-                state.photos.forEach((item) => {
-                    if (item.id === action.payload) {
-                        newcollection.unshift({...item});
-                    }
-                })
+                if (state.photos.length === 0) {
+                    state.curatedPhotos.forEach((item) => {
+                        if (item.id === action.payload) {
+                            newcollection.unshift({...item});
+                        }
+                    })
+                } else {
+                    state.photos.forEach((item) => {
+                        if (item.id === action.payload) {
+                            newcollection.unshift({...item});
+                        }
+                    })
+                }
             }
             localStorage.setItem('collection', JSON.stringify(newcollection));
             return {
@@ -91,7 +124,13 @@ const photoReducer = (state=initialState, action) => {
         case SET_ERROR:
             return {
                 ...state,
+                photos: {},
                 error: action.payload
+            }
+        case SET_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.payload
             }
         default:
             return state

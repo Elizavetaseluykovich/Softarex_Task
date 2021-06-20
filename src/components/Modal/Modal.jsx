@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import styles from './Modal.module.css';
-import {downloadPhoto, setLikePhoto, PhotoCollection} from '../../store/actions/PhotosActions';
 import {useHistory, useLocation} from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux';
 import {translate} from '../../i18n/index';
+import {downloadPhotoCreator, setLikePhoto, PhotoCollection} from '../../store/ActionsCreators/PhotosCreators.js';
 
 const Modal = () => {
     let history = useHistory();
@@ -102,7 +102,7 @@ const Modal = () => {
                             <span>{translate("collect", language)}</span>
                         </button>
                         <div className={styles.btnDownload}>
-                            <span onClick={() => downloadPhoto(src.original, photographer)}>{translate("download", language)}</span>
+                            <span onClick={() => dispatch(downloadPhotoCreator(src.original, photographer, id))}>{translate("download", language)}</span>
                             <span className={styles.list} onClick={() => setList(!list)}></span>
                         </div>
                         <div className={list ? `${styles.dropdown} ${styles.active}` : styles.dropdown}>
@@ -139,7 +139,7 @@ const Modal = () => {
                                             </label>
                                         </li>
                                     </ul>
-                                    <span className={styles.dropdownBtn} ><button  onClick={(e) => {e.preventDefault(); downloadPhoto(src.original, photographer, activeItem.width, activeItem.height)}}>{translate("download", language)}</button></span>
+                                    <span className={styles.dropdownBtn} ><button  onClick={(e) => {e.preventDefault(); dispatch(downloadPhotoCreator(src.original, photographer, id, activeItem.width, activeItem.height))}}>{translate("download", language)}</button></span>
                                 </form>
                             </div>
                         </div>

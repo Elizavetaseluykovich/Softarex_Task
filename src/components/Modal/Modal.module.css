@@ -15,7 +15,7 @@
     border-radius: 6px;
     padding: 15px;
     margin-bottom: 1.15rem;
-    margin-top: 2.3rem;
+    margin-top: 3.3rem;
 }
 
 .header {
@@ -135,12 +135,6 @@ div.btnDownload {
     margin-right: 6px;
 }
 
-.btnFollow {
-    margin-right: .6rem;
-    padding: 6px 13px;
-    min-height: 32px;
-    margin-left: 20px
-}
 
 div.btnDownload, .dropdown button {
     background: #05a081;
@@ -172,7 +166,6 @@ div.btnDownload, .dropdown button {
     min-width: 240px;
     max-width: 50vw;
 }
-
 
 .btnClose {
     margin-top: 32px;
@@ -349,4 +342,64 @@ img.zoomImg {
 
 .added svg {
     fill: #818181;
+}
+
+@media screen and (max-width: 1300px) {
+    .content {
+        max-width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .content {
+        max-width: 700px;
+    }
+    .btns button {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+    .btnDownload span:first-child {
+        padding: 6px 10px;
+        font-size: 14px;
+    }  
+    .btns svg {
+        width: 22px;
+        height: 22px;
+    }
+    .list {
+        padding-top: 12px;
+    }
+
+    .list::before {
+        top: 17px;
+    }
+    
+    .list::after {
+        top: 17px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .content {
+        max-width: 500px;
+    }
+    .btnDownload span:first-child {
+        display: none;
+    }  
+    .authorPic {
+        min-width: 32px;
+        min-height: 32px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .content {
+        max-width: 300px;
+    }
+    .btnlike span, .btnAdd span {
+        display: none;
+    }
+    button.btnAdd, button.btnlike {
+        padding: 5px;
+    }
 }

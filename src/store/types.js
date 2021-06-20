@@ -1,7 +1,15 @@
-export const GET_PHOTOS = 'GET_PHOTOS';
+export const SET_PHOTOS = 'SET_PHOTOS';
+export const SET_CURATED_PHOTOS = 'SET_CURATED_PHOTOS';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_HISTORY = 'SET_HISTORY';
 export const DELETE_HISTORY = 'DELETE_HISTORY';
 export const LIKE_PHOTO = 'LIKE_PHOTO';
 export const COLLECTION = 'COLLECTION';
+export const GET_CURATED_PHOTOS = 'GET_CURATED_PHOTOS';
+export const GET_PHOTOS = 'GET_PHOTOS';
+export const SET_IS_FETCHING = 'SET_IS_FETCHING';
+export const DOWNLOAD_PHOTO = 'DOWNLOAD_PHOTO';
+
+
+
 

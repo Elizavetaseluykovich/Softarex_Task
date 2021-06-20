@@ -2,20 +2,19 @@ import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PhotosContainer from '../PhotosContainer/PhotosContainer';
 import styles from './SearchPage.module.css';
-import {getPhotos} from '../../store/actions/PhotosActions';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from '../Loader/Loader';
 import { useLocation } from 'react-router-dom';
 import {translate} from '../../i18n/index';
+import { getPhotosCreator, setIsFetching } from '../../store/ActionsCreators/PhotosCreators';
 
 const SearchPage = () => {
 
     const dispatch = useDispatch();
     const location = useLocation();
-    const {photos, error} = useSelector((state) => state.photos);
+    const {photos, error, isFetching} = useSelector((state) => state.photos);
     const {language} = useSelector(state => state.language);
     const [page, setPage] = useState(1);
-    const [isFetching, setIsFetching] = useState(false);
     let search = location.pathname.slice(8);
     let header = search[0].toUpperCase() + search.slice(1);
 
@@ -23,8 +22,8 @@ const SearchPage = () => {
 
     const searchPhotosHandler = (change) => {
         setPage(change ? 1 : page + 1);
-        setIsFetching(true);
-        dispatch(getPhotos(change ? 1 : page + 1, photosCount, search));
+        dispatch(setIsFetching(true));
+        dispatch(getPhotosCreator(change ? 1 : page + 1, 10, search, false));
     }
 
     useEffect(() => {
@@ -41,17 +40,17 @@ const SearchPage = () => {
                 }
             </section>
             <section className={styles.content}>
-               {photos.length > 0 ?
-                 <InfiniteScroll
-                 dataLength={photos ? photos.length : null}
-                 next={() => searchPhotosHandler(false)}
-                 hasMore={isFetching}
-                 loader={<Loader/>}>
-                 <PhotosContainer photos={photos} location={location}/>
-                 {isFetching ? <Loader/> : ''} 
-             </InfiniteScroll> :
-                <p className={styles.notFound}>{translate('notFound', language)} "{header}"</p>
-             }
+                {isFetching && photos.length === 0 ? <Loader/> : 
+                    photos.length > 0 ?
+                    <InfiniteScroll
+                        dataLength={photos ? photos.length : null}
+                        next={() => searchPhotosHandler(false)}
+                        hasMore={true}
+                        loader={<Loader/>}>
+                        <PhotosContainer photos={photos} location={location}/>
+                    </InfiniteScroll> :
+                        <p className={styles.notFound}>{translate('notFound', language)} "{header}"</p>
+                }
             </section>
         </>
     )
