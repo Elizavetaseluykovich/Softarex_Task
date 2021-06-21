@@ -135,10 +135,16 @@ li a.activeCollection {
     } */
     .btns li a, .btns li{
         font-size: 14px;
-        padding-left: 14px;
+        padding-left: 10px;
     }
     .navLogo {
         width: 20px;
+    }
+
+    .formContainer input {
+        padding: 12px 14px;
+        font-size: 17px;
+        line-height: 18px;
     }
 }
 
@@ -149,13 +155,63 @@ li a.activeCollection {
     .navLogoText {
         display: none;
     }
-    /* .btns li a, .btns li{
-        font-size: 10px;
-    } */
     .navLogo {
         width: 20px;
     }
+
+    .formContainer input {
+        padding: 12px 14px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .formContainer button {
+        padding: 0px 5px;
+    }
 }
+
+@media screen and (max-width: 450px) {
+    .formContainer {
+        width: 175px;
+    }
+    .formContainer button {
+        padding: 0px 5px;
+    }
+    .btns li  {
+        padding-left: 6px;
+    }
+    .btns li a {
+        padding-left: 0px;
+    }
+    .formContainer input {
+        padding: 12px 14px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    ul.btns {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "collection collection" "ru en";
+        margin: 0 auto;  
+    }
+
+    ul.btns li:nth-child(1) {
+        grid-area: collection;
+    }
+
+    ul.btns li:nth-child(2) {
+        grid-area: ru;
+    }
+
+    ul.btns li:nth-child(3) {
+        grid-area: en;
+    }
+}
+
 
 
 

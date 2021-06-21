@@ -27,3 +27,10 @@
     margin-right: .65rem;
     margin-bottom: .25rem;
 }
+
+
+@media screen and (max-width: 400px) {
+    .SearchBarLink span:first-child {
+        font-size: 12px;
+    }
+}

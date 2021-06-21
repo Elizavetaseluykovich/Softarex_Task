@@ -1,5 +1,5 @@
 import SearchBar from '../SearchBar/SearchBar';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Header.module.css';
 import {backgrounds, suggestedList} from '../../store/arrays';
 import shuffle from '../../store/shuffleFunc';
@@ -10,30 +10,33 @@ import {translate} from '../../i18n/index';
 
 const Header = () => {
     const dispatch = useDispatch();
-    const [focus, setFocus] = useState(false); 
+    const [count, setCount] = useState(window.innerWidth >= 700 ? 6 : 3);
+    const [arr, setArr] = useState([]);
     let number = Math.floor(Math.random()*5); 
     const {language} = useSelector(state => state.language);
 
-    let arr = shuffle(suggestedList, 6);
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 700) setCount(6);
+            else setCount(3);
+        })
+        return () => window.removeEventListener('resize', () => {
+            if (window.innerWidth >= 700) setCount(6);
+            else setCount(3);
+        })
+    }, []);
+
+    useEffect (() => {
+        setArr(shuffle(suggestedList, count));
+    }, [count]);
+
     let topics = shuffle(content, 8);
-
-    function checkFocus(e) {
-        e.stopPropagation();
-        if (e.target.className && typeof e.target.className.includes !== 'undefined' && (e.target.className.includes('SearchBar') || e.target.parentNode.className.includes('SearchBar'))) setFocus(true);
-        else setFocus(false);
-    }
-
-    function closeDropDown() {
-        console.log("hello");
-        window.addEventListener('click', e => checkFocus(e));
-        window.removeEventListener('click', e => checkFocus(e));
-    }
 
     return (
         <header className={styles.header} style={{background: `url(${backgrounds[number].url}) ${backgrounds[number].position}`}}>
             <section className={styles.content}>
                 <h1>{translate("header", language)}</h1>
-                <SearchBar top={topics} check={true} language={language} focus={focus} closeDropDown={() => closeDropDown()}/>
+                <SearchBar top={topics} check={true} language={language}/>
                 <div className={styles.suggested}>
                     <ul>
                         <li>{translate("suggested", language)}:</li>

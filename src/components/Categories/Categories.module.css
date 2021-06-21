@@ -83,10 +83,30 @@
     opacity: 0;
     -webkit-transition: all .3s;
     transition: all .3s;
-    /* position: relative; */
 }
 
 .item:hover span {
     opacity: 1;
 }
+
+@media screen and (max-width: 1000px) {
+    .item {
+        width: 33%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .item {
+        width: 50%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .item {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 

@@ -5,7 +5,7 @@ import SuggestionContainer from '../SuggestionContainer/SuggestionContainer';
 import {useHistory} from "react-router-dom";
 import {translate} from '../../i18n/index';
 
-const SearchBar = ({top, check, language, closeDropDown}) => {
+const SearchBar = ({top, check, language}) => {
 
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');

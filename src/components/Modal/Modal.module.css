@@ -311,6 +311,10 @@ img.zoomImg {
     margin: 0;
 }
 
+.activeIcon {
+    display: none;
+}
+
 .dropdown label {
     width: 100%;
 }
@@ -340,6 +344,10 @@ img.zoomImg {
     background: #f8f8f8;
 }
 
+.btnlikeActive i.activeIcon svg{
+    fill: #ff2121;
+}
+
 .added svg {
     fill: #818181;
 }
@@ -347,12 +355,16 @@ img.zoomImg {
 @media screen and (max-width: 1300px) {
     .content {
         max-width: 1000px;
+        min-width: 1000px;
+
     }
 }
 
 @media screen and (max-width: 1000px) {
     .content {
         max-width: 700px;
+        min-width: 700px;
+
     }
     .btns button {
         padding: 6px 10px;
@@ -382,6 +394,8 @@ img.zoomImg {
 @media screen and (max-width: 700px) {
     .content {
         max-width: 500px;
+        min-width: 500px;
+
     }
     .btnDownload span:first-child {
         display: none;
@@ -395,11 +409,58 @@ img.zoomImg {
 @media screen and (max-width: 500px) {
     .content {
         max-width: 300px;
+        min-width: 300px;
+
+    }
+    .text {
+        font-size: 12px;
+    }
+
+    .btns i{
+        margin: 0;
     }
     .btnlike span, .btnAdd span {
         display: none;
     }
     button.btnAdd, button.btnlike {
-        padding: 5px;
+        padding: 0px;
     }
+
+    .btnlikeActive .likeIcon {
+        display: none;
+    }
+
+    .btnlikeActive i.activeIcon {
+        display: block;
+    }
+
+    .header button.btnAdd, .header button.btnlike  {
+        box-shadow: none;
+        border: none;
+        background: none;
+    }
+
+    .header button.btnlike:hover, .header button.btnAdd:hover {
+        background: none;
+    }
+    
+    .btnlike.btnlikeActive {
+        border: none;
+        background: #fff;
+        box-shadow: none;
+    }
+    .header .btnlike.btnlikeActive:hover {
+        border: none;
+        background: #fff;
+    }
+
+    .header .btnlike.btnlikeActive:hover svg{
+        fill: #ff2121;
+    }
+
+    .dropdown {
+        top: 43px;
+    }
+
+
 }
