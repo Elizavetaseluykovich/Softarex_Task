@@ -188,7 +188,7 @@ div.btnDownload, .dropdown button {
     display: inline-block;
     width: 24px;
     height: 2.5px;
-    top: -16px;
+    top: -15px;
     left: 0;
     background: rgb(171, 171, 171);
     transform: rotate(90deg);

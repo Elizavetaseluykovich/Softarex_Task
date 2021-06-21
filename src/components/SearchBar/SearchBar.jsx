@@ -5,7 +5,7 @@ import SuggestionContainer from '../SuggestionContainer/SuggestionContainer';
 import {useHistory} from "react-router-dom";
 import {translate} from '../../i18n/index';
 
-const SearchBar = ({top, check, language}) => {
+const SearchBar = ({top, check, language, closeDropDown}) => {
 
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
@@ -49,7 +49,7 @@ const SearchBar = ({top, check, language}) => {
                         </i>
                     </button>
                 </div>
-                {focus && check ? <SuggestionContainer arr={top} addfocus={() => setFocus(true)} language={language}/> : null }
+                {focus && check? <SuggestionContainer arr={top} addfocus={() => setFocus(true)} language={language} /> : null}
             </form>
         </div>
     )

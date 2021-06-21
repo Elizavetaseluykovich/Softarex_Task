@@ -94,6 +94,71 @@ li a.activeCollection {
     width: 100%;
 }
 
+@media screen and (max-width: 1200px) {
+    .formContainer {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .formContainer {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .formContainer {
+        width: 300px;
+    }
+    .navLogoText {
+        font-size: 16px;
+    }
+    .btns li a, .btns li{
+        font-size: 14px;
+        padding-left: 14px;
+    }
+    .navLogo {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .formContainer {
+        width: 290px;
+        font-size: 10px;
+    }
+    .navLogoText {
+        display: none;
+    }
+    /* .btns {
+        margin: 0;
+    } */
+    .btns li a, .btns li{
+        font-size: 14px;
+        padding-left: 14px;
+    }
+    .navLogo {
+        width: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .formContainer {
+        width: 220px;
+    }
+    .navLogoText {
+        display: none;
+    }
+    /* .btns li a, .btns li{
+        font-size: 10px;
+    } */
+    .navLogo {
+        width: 20px;
+    }
+}
+
+
+
 
 
 

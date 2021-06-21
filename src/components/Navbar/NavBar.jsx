@@ -20,6 +20,8 @@ const NavBar = ({active}) => {
         }
     }
 
+   
+
     window.addEventListener('scroll', setBgNavBar);
 
     return (
@@ -36,7 +38,7 @@ const NavBar = ({active}) => {
                 </Link>
                 <div className="form">
                     <div className={styles.formContainer}>
-                        <SearchBar check={false} language={language}/>
+                        <SearchBar check={false} language={language} />
                     </div>
                 </div>
                 <ul className={styles.btns}>

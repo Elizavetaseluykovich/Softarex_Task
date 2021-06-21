@@ -177,3 +177,19 @@
     height: 500px;
     z-index: -4;
 }
+
+@media screen and (max-width: 600px) {
+    .input {
+        padding: 12px 14px;
+        font-size: 17px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .input {
+        padding: 10px 12px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
