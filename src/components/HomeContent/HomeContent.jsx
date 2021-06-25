@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
+import {Suspense, useEffect, useState, lazy} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PhotosContainer from '../PhotosContainer/PhotosContainer';
+// import PhotosContainer from '../PhotosContainer/PhotosContainer';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from '../Loader/Loader';
 import { useLocation } from 'react-router-dom';
 import { getCuratedPhotosCreator } from '../../store/ActionsCreators/PhotosCreators';
-
+const PhotosContainer = lazy(() => import('../PhotosContainer/PhotosContainer'));
 const HomeContent = () => {
 
     const location = useLocation();
@@ -31,7 +31,9 @@ const HomeContent = () => {
                 dataLength={curatedPhotos.length}
                 next={showMoreTrendingPhotos}
                 hasMore={true}>
-                <PhotosContainer photos={curatedPhotos} location={location}/>
+                <Suspense fallback={<Loader/>}>
+                    <PhotosContainer photos={curatedPhotos} location={location}/>
+                </Suspense>
                 {isFetching ? <Loader/> : ''} 
             </InfiniteScroll>}
         </>

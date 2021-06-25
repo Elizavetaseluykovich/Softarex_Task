@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import styles from './Modal.module.css';
 import {useHistory, useLocation} from "react-router-dom";
-import { useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {translate} from '../../i18n/index';
 import {downloadPhotoCreator, setLikePhoto, PhotoCollection} from '../../store/ActionsCreators/PhotosCreators.js';
 
@@ -13,9 +13,9 @@ const Modal = () => {
     const {likes, collection} = useSelector((state) => state.photos);
     const {language} = useSelector(state => state.language);
     const [list, setList] = useState(false);
-    const [activeItem, setActiveItem] = useState({active: true, id: 1});
     const location = useLocation();
     const {src, photographer_url, photographer, width, height, id, url, avg_color} = location.state;
+    const [activeItem, setActiveItem] = useState({active: true, id: '1', width: width, height:height});
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';
@@ -28,13 +28,13 @@ const Modal = () => {
         })
     }
  
-    const CallBackZoom = useCallback((e) => { 
+    const CallBackZoom = useCallback ((e) => { 
         let mouseX = (window.innerWidth/2 - e.clientX)/10,
             mouseY = (window.innerHeight/2 - e.clientY)/10;
         setTransform(`scale(3) translate3d(${mouseX}%, ${mouseY}%, 0px)`);
     }, [])
 
-    const hoverCallback = useCallback((e) => {
+    const hoverCallback = useCallback ((e) => {
         if (e.target.className === styles.list) {
             setList(true);
         } else setList(false);
@@ -64,7 +64,7 @@ const Modal = () => {
         }
         else if (zoom) addEvent();
 
-    },[zoom]);
+    }, [zoom]);
 
     useEffect(() => {
         window.addEventListener('mouseover', hoverCallback);
@@ -114,30 +114,30 @@ const Modal = () => {
                                 <form >
                                     <h3>{translate("choose", language)}:</h3>
                                     <ul>
-                                        <li onClick={e => {setActiveLi(e, height, width)}} id='1' className={activeItem.active & activeItem.id === '1' ? styles.activeItem : ''}>
+                                        <li onClick={e => {setActiveLi(e, height, width)}} id='1' className={activeItem.active & (activeItem.id === '1' || activeItem.id === 'first') ? styles.activeItem : ''}>
                                             <label>  
-                                                <input type="radio" name="size" id="first" checked={activeItem.active & activeItem.id === '1' ? true : false}/>
+                                                <input type="radio" name="size" id="first" checked={activeItem.active & (activeItem.id === '1'  || activeItem.id === 'first')  ? true : false}/>
                                                 <span className={styles.name}>{translate("original", language)}</span>
                                                 <span> {width} x {height}</span>
                                             </label>
                                         </li>
-                                        <li onClick={e => {setActiveLi(e, Math.floor((height/width)*1920), 1920)}} id='2' className={activeItem.active & activeItem.id === '2' ? styles.activeItem : ''}>
+                                        <li onClick={e => {setActiveLi(e, Math.floor((height/width)*1920), 1920)}} id='2' className={activeItem.active & (activeItem.id === '2' || activeItem.id === 'second') ? styles.activeItem : ''}>
                                             <label>  
-                                                <input type="radio" name="size" id="second" checked={activeItem.active & activeItem.id === '2' ? true : false}/>
+                                                <input type="radio" name="size" id="second" checked={activeItem.active & (activeItem.id === '2' || activeItem.id === 'second') ? true : false}/>
                                                 <span className={styles.name}>{translate("large", language)}</span>
                                                 <span> {1920} x {Math.floor((height/width)*1920)}</span>
                                             </label>
                                         </li>
-                                        <li onClick={e => {setActiveLi(e, Math.floor((height/width)*1280), 1280)}} id='3' className={activeItem.active & activeItem.id === '3' ? styles.activeItem : ''}>
+                                        <li onClick={e => {setActiveLi(e, Math.floor((height/width)*1280), 1280)}} id='3' className={activeItem.active & (activeItem.id === '3' || activeItem.id === 'third') ? styles.activeItem : ''}>
                                             <label>
-                                                <input type="radio" name="size" id="third" checked={activeItem.active & activeItem.id === '3' ? true : false}/>
+                                                <input type="radio" name="size" id="third" checked={activeItem.active & (activeItem.id === '3' || activeItem.id === 'third') ? true : false}/>
                                                 <span className={styles.name}>{translate("medium", language)}</span> 
                                                 <span> {1280} x {Math.floor((height/width)*1280)} </span>
                                             </label>
                                         </li>
-                                        <li onClick={e => {setActiveLi(e, Math.floor((height/width)*640), 640)}} id='4' className={activeItem.active & activeItem.id === '4' ? styles.activeItem : ''}>
+                                        <li onClick={e => {setActiveLi(e, Math.floor((height/width)*640), 640)}} id='4' className={activeItem.active & (activeItem.id === '4' || activeItem.id === 'fourth') ? styles.activeItem : ''}>
                                             <label>
-                                                <input type="radio" name="size" id="fourth" checked={activeItem.active & activeItem.id === '4' ? true : false}/>
+                                                <input type="radio" name="size" id="fourth" checked={activeItem.active & (activeItem.id === '4' || activeItem.id === 'fourth') ? true : false}/>
                                                 <span className={styles.name}>{translate("small", language)}</span>
                                                 <span> {640} x {Math.floor((height/width)*640)}</span>
                                             </label>
@@ -151,7 +151,10 @@ const Modal = () => {
                 </section>
                 <section className={styles.image} onClick={() => setZoom(!zoom)} style={zoom ? {cursor: 'zoom-out'} : {cursor: 'zoom-in'}}>
                     <div className={styles.imageContainer}>
-                        <img style={transform ? {transform : transform} : {}} className={zoom ? `${styles.zoomImg} ${styles.mainImg}` : styles.mainImg} src={src.original} alt={url.substring(29, url.lastIndexOf('-'))}/>
+                        <img 
+                        style={transform ? {transform : transform} : {}} className={zoom ? `${styles.zoomImg} ${styles.mainImg}` : styles.mainImg} src={src.original} alt={url.substring(29, url.lastIndexOf('-'))}
+                        srcSet={`${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500 500w, ${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500 1000w`}
+                        />
                     </div>
                 </section>
             </div>

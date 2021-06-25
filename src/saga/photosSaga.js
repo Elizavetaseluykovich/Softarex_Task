@@ -35,7 +35,8 @@ const fetchPhotos = ({page, per_page, query}) => {
                 'allowed_origins': true,
                 'Authorization': '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf',
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true
+                "Access-Control-Allow-Credentials": true,
+                "Cache-Control": "max-age=31536000"
             },
         });
     } catch(err) {

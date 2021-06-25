@@ -22,7 +22,8 @@ const ImageItem = ({url, src, photographer_url, photographer, id, width, height,
             new IntersectionObserver((myImg, observer) => {
                 myImg.forEach(item => {
                     if (item.intersectionRatio > 0) {
-                        item.target.src = item.target.dataset.src;
+                        item.target.srcset = item.target.dataset.srcset;
+                        // console.log(item.target.dataset.srcset);
                         observer.unobserve(item.target);
                     }
                 })
@@ -48,10 +49,13 @@ const ImageItem = ({url, src, photographer_url, photographer, id, width, height,
         <Link className={styles.link} to={{pathname: `${pathname}/photo/${id}/`, state: {url, src, photographer, photographer_url, id, width, height, avg_color, background: location, like: find(likes, id)}}} >
             <div className={styles.col} >
                 <article style={{background: `${avg_color}`}}>
-                        <img data-src={src.original} ref={imgRef} alt='' src='' 
+                        <img 
+                            // srcSet={`${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500 500w, ${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500 1000w`}
+                            // srcSet=''
+                            data-srcset={`${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500 500w, ${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500 1000w`} 
+                            ref={imgRef} alt='' src='' 
                             className={styles.mainImg} width={width} height={height}
-                            srcSet={`${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500 500w, ${src.original}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500 1000w`}
-                            sizes="(max-width: 540px) 250px, 500px"/>
+                        />
                         <div className={find(collection, id) || find(likes, id) ? 
                                 `${styles.imageBtns} ${styles.active} 
                                 ${find(collection, id) ? styles.collection : ''}  
