@@ -6,16 +6,7 @@ import { DOWNLOAD_PHOTO, GET_CURATED_PHOTOS, GET_PHOTOS } from "../store/types.j
 
 const fetchCuratedPhotos = ({page, per_page}) => {
     try {
-        return client.photos.curated({ page, per_page }, {
-            mode: 'no-cors',
-            method: 'post',
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                'allowed_origins': true,
-                'Authorization': '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf',
-                "Access-Control-Allow-Credentials": true
-            },
-        });
+        return client.photos.curated({page, per_page});
     } catch(e) {
         setError(e);
     }
@@ -28,17 +19,7 @@ function* workerGetCuratedPhotos(action) {
 
 const fetchPhotos = ({page, per_page, query}) => {
     try {
-        return client.photos.search({ page, per_page, query}, {
-            mode: 'no-cors',
-            method: 'post',
-            headers: {
-                'allowed_origins': true,
-                'Authorization': '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf',
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true,
-                "Cache-Control": "max-age=31536000"
-            },
-        });
+        return client.photos.search({ page, per_page, query});
     } catch(err) {
         setError(err.message);
     }

@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import PhotosContainer from '../PhotosContainer/PhotosContainer';
 import styles from './SearchPage.module.css';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from '../Loader/Loader';
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {translate} from '../../i18n/index';
-import { getPhotosCreator, setIsFetching } from '../../store/ActionsCreators/PhotosCreators';
+import {getPhotosCreator, setIsFetching} from '../../store/ActionsCreators/PhotosCreators';
 
 const SearchPage = () => {
-
     const dispatch = useDispatch();
     const location = useLocation();
     const {photos, error, isFetching} = useSelector((state) => state.photos);
@@ -18,7 +17,7 @@ const SearchPage = () => {
     let search = location.pathname.slice(8);
     let header = search[0].toUpperCase() + search.slice(1);
 
-    const photosCount = Math.round(window.innerHeight * (window.innerWidth - 100) / (((window.innerWidth - 100) / 4) * 590));
+    // const photosCount = Math.round(window.innerHeight * (window.innerWidth - 100) / (((window.innerWidth - 100) / 4) * 590));
 
     const searchPhotosHandler = (change) => {
         setPage(change ? 1 : page + 1);
@@ -28,6 +27,7 @@ const SearchPage = () => {
 
     useEffect(() => {
         searchPhotosHandler(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search])
 
     return (
@@ -35,8 +35,8 @@ const SearchPage = () => {
         <>
             <section className={styles.header}>
                 {language === 'RU' ? 
-                    <h1>{translate("photos", language)} "{header}"</h1>
-                    :<h1>{header} {translate("photos", language)} </h1>
+                    <h1>{translate("photos", language)} "{translate(`${header}`, language) || header}"</h1>
+                    :<h1>{translate(`${header}`, language) || header} {translate("photos", language)} </h1>
                 }
             </section>
             <section className={styles.content}>

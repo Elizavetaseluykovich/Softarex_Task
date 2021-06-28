@@ -30,6 +30,7 @@ const ImageItem = ({url, src, photographer_url, photographer, id, width, height,
             }
         , options).observe(node);
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         []
     )
    

@@ -64,6 +64,7 @@ const Modal = () => {
         }
         else if (zoom) addEvent();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [zoom]);
 
     useEffect(() => {

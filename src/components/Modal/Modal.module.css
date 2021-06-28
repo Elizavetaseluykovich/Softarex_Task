@@ -25,7 +25,7 @@
 
 .author {
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     flex-basis: auto;
     -webkit-box-flex: 0;
     flex-grow: 0;

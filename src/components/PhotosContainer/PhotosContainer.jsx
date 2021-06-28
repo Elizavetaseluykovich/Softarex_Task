@@ -17,9 +17,9 @@ const PhotosContainer= ({photos, location}) => {
             className={styles.container}>
             {
                 photos ? 
-                photos.map((photo) =>
+                photos.map((photo, index) =>
                     <>
-                        <ImageItem key={photo.id} {...photo} location={location}  />
+                        <ImageItem key={index+photo.id} {...photo} location={location}  />
                     </>
                     )
                 : <><p>Sorry. Error </p> <Loader/></>
